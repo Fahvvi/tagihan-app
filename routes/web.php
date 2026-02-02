@@ -34,6 +34,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
     });
 
+    // Route Cetak Struk Pembayaran
+    Route::get('/tagihan/{id}/cetak', [\App\Http\Controllers\TagihanController::class, 'cetak'])->name('admin.tagihan.cetak');
+
 // --- RUTE PELANGGAN (Diproteksi Middleware Pelanggan) ---
 Route::prefix('pelanggan')->middleware('auth:pelanggan')->group(function () {
     // Dashboard Utama
@@ -49,4 +52,7 @@ Route::prefix('pelanggan')->middleware('auth:pelanggan')->group(function () {
     // Proses Pembayaran (Mockup)
     Route::get('/bayar/{id}', [\App\Http\Controllers\ClientAreaController::class, 'showPayment'])->name('pelanggan.bayar');
     Route::post('/bayar/{id}', [\App\Http\Controllers\ClientAreaController::class, 'processPayment'])->name('pelanggan.process');
+    
+    // Route Cetak Struk Pembayaran
+    Route::get('/tagihan/{id}/cetak', [\App\Http\Controllers\ClientAreaController::class, 'cetak'])->name('pelanggan.tagihan.cetak');
 });

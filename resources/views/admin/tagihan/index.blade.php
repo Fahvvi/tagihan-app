@@ -58,8 +58,20 @@
                         {{ $t->jumlah_meter }} kWh
                         <div class="text-xs text-slate-400">({{ $t->penggunaan->meter_awal }} - {{ $t->penggunaan->meter_akhir }})</div>
                     </td>
-                    <td class="px-6 py-4 text-blue-600 font-bold">
-                        Rp {{ number_format($total, 0, ',', '.') }}
+                   <td class="px-6 py-4 text-center">
+                        @if($t->status == 'Belum Bayar')
+                            <form action="{{ route('tagihan.bayar', $t->id_tagihan) }}" method="POST" onsubmit="return confirm('Proses pembayaran?');">
+                                @csrf
+                                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-md transition">
+                                    Bayar
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('admin.tagihan.cetak', $t->id_tagihan) }}" target="_blank" class="flex items-center justify-center gap-1 bg-slate-800 hover:bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold shadow-md transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2-4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                                Cetak
+                            </a>
+                        @endif
                     </td>
                     <td class="px-6 py-4">
                         @if($t->status == 'Lunas')

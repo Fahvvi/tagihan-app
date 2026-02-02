@@ -48,4 +48,12 @@ class TagihanController extends Controller
 
         return redirect()->back()->with('success', 'Pembayaran berhasil diproses!');
     }
+
+    public function cetak($id)
+    {
+        // Pastikan load relasi pembayaran agar tidak error
+        $tagihan = Tagihan::with(['pelanggan.tarif', 'pembayaran', 'penggunaan'])->findOrFail($id);
+        
+        return view('struk.cetak', compact('tagihan'));
+    }
 }

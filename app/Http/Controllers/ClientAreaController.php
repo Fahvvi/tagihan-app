@@ -95,4 +95,16 @@ class ClientAreaController extends Controller
 
         return redirect()->route('pelanggan.dashboard')->with('success', 'Pembayaran Berhasil! Terima kasih.');
     }
+
+    public function cetak($id)
+    {
+        $tagihan = Tagihan::with(['pelanggan.tarif', 'pembayaran', 'penggunaan'])->findOrFail($id);
+        
+        // Security: Pastikan pelanggan cuma bisa cetak punya sendiri
+        if ($tagihan->id_pelanggan != Auth::guard('pelanggan')->id()) {
+            abort(403);
+        }
+
+        return view('struk.cetak', compact('tagihan'));
+    }
 }
