@@ -3,15 +3,25 @@
 @section('title', 'Data Pelanggan')
 
 @section('content')
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
         <div>
             <h2 class="text-2xl font-bold text-slate-800">Daftar Pelanggan</h2>
             <p class="text-slate-500 text-sm">Kelola akun dan data meteran pelanggan.</p>
         </div>
-        <a href="{{ route('pelanggan.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-blue-200 transition flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
-            Tambah Pelanggan
-        </a>
+
+        <div class="flex flex-col md:flex-row gap-3">
+            <form action="{{ route('pelanggan.index') }}" method="GET" class="relative">
+                <input type="text" name="search" value="{{ request('search') }}" 
+                    class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition w-full md:w-64 text-sm"
+                    placeholder="Cari nama, KWH, atau username...">
+                <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </form>
+
+            <a href="{{ route('pelanggan.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-lg shadow-blue-200 transition flex items-center justify-center gap-2 whitespace-nowrap">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                Tambah Pelanggan
+            </a>
+        </div>
     </div>
 
     @if(session('success'))
@@ -63,5 +73,9 @@
                 @endforelse
             </tbody>
         </table>
+    </div>
+    
+    <div class="mt-4">
+        {{ $pelanggan->links() }}
     </div>
 @endsection

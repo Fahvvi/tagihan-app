@@ -3,15 +3,25 @@
 @section('title', 'Transaksi & Riwayat Tagihan')
 
 @section('content')
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
         <div>
             <h2 class="text-2xl font-bold text-slate-800">Tagihan & Pembayaran</h2>
             <p class="text-slate-500 text-sm">Kelola pembayaran listrik pelanggan.</p>
         </div>
-        <a href="{{ route('penggunaan.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-lg transition flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
-            Catat Meter Baru
-        </a>
+        
+        <div class="flex flex-col md:flex-row gap-3">
+            <form action="{{ route('tagihan.index') }}" method="GET" class="relative">
+                <input type="text" name="search" value="{{ request('search') }}" 
+                    class="pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition w-full md:w-64 text-sm"
+                    placeholder="Cari Pelanggan / KWH...">
+                <svg class="w-5 h-5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </form>
+
+            <a href="{{ route('penggunaan.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-medium shadow-lg transition flex items-center justify-center gap-2 whitespace-nowrap">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                Catat Meter Baru
+            </a>
+        </div>
     </div>
 
     @if(session('success'))
@@ -111,4 +121,9 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-4">
+        {{ $tagihan->links() }}
+    </div>
+    
 @endsection

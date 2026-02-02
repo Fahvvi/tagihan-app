@@ -12,8 +12,21 @@ class PelangganController extends Controller
 {
     public function index()
     {
-        // Ambil data pelanggan beserta relasi tarifnya untuk ditampilkan
-        $pelanggan = Pelanggan::with('tarif')->latest()->get();
+        // Mulai Query
+        $query = Pelanggan::with('tarif')->latest();
+
+        // Jika ada pencarian
+        if (request('search')) {
+            $query->where(function($q) {
+                $q->where('nama_pelanggan', 'like', '%' . request('search') . '%')
+                  ->orWhere('nomor_kwh', 'like', '%' . request('search') . '%')
+                  ->orWhere('username', 'like', '%' . request('search') . '%');
+            });
+        }
+
+        // Gunakan paginate(10) bukan get()
+        $pelanggan = $query->paginate(10)->withQueryString();
+
         return view('admin.pelanggan.index', compact('pelanggan'));
     }
 

@@ -12,11 +12,21 @@ class TagihanController extends Controller
 {
     public function index()
     {
-        // Ambil semua tagihan, urutkan yang belum bayar di atas
-        $tagihan = Tagihan::with(['pelanggan', 'pelanggan.tarif'])
-                    ->orderByRaw("FIELD(status, 'Belum Bayar', 'Lunas')")
+        $query = Tagihan::with(['pelanggan', 'pelanggan.tarif']);
+
+        // Fitur Pencarian Relasi
+        if (request('search')) {
+            $query->whereHas('pelanggan', function($q) {
+                $q->where('nama_pelanggan', 'like', '%' . request('search') . '%')
+                  ->orWhere('nomor_kwh', 'like', '%' . request('search') . '%');
+            });
+        }
+
+        // Urutkan dan Paginate
+        $tagihan = $query->orderByRaw("FIELD(status, 'Belum Bayar', 'Lunas')")
                     ->latest()
-                    ->get();
+                    ->paginate(10) // Batasi 10 per halaman
+                    ->withQueryString();
                     
         return view('admin.tagihan.index', compact('tagihan'));
     }
