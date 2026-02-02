@@ -22,5 +22,8 @@ class Pembayaran extends Model
         return $this->belongsTo(Pelanggan::class, 'id_pelanggan', 'id_pelanggan');
     }
 
-  
+    public function user() // Relasi ke Admin yang memproses (opsional)
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
 }

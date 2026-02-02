@@ -37,6 +37,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     // Route Cetak Struk Pembayaran
     Route::get('/tagihan/{id}/cetak', [\App\Http\Controllers\TagihanController::class, 'cetak'])->name('admin.tagihan.cetak');
 
+    Route::get('/laporan', [\App\Http\Controllers\LaporanController::class, 'index'])->name('admin.laporan.index');
+    Route::get('/laporan/cetak', [\App\Http\Controllers\LaporanController::class, 'cetak'])->name('admin.laporan.cetak');
+
 // --- RUTE PELANGGAN (Diproteksi Middleware Pelanggan) ---
 Route::prefix('pelanggan')->middleware('auth:pelanggan')->group(function () {
     // Dashboard Utama

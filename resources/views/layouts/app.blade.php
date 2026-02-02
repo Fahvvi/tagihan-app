@@ -82,6 +82,11 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                         Riwayat Meter
                     </a>
+
+                    <a href="{{ route('admin.laporan.index') }}" class="flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 group {{ Request::is('admin/laporan*') ? 'bg-blue-50 text-blue-600 font-semibold shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-blue-600' }}">
+                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        Laporan
+                    </a>
                 
                 @elseif(Auth::guard('pelanggan')->check())
                     <p class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Area Pelanggan</p>
