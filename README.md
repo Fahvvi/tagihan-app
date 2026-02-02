@@ -1,60 +1,111 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ⚡ Listriku - Aplikasi Pembayaran Listrik Pascabayar (PPOB)
+
+![Laravel](https://img.shields.io/badge/Laravel-11%2F12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-F5788D?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+
+**Listriku** adalah aplikasi web manajemen tagihan dan pembayaran listrik pascabayar yang dirancang untuk efisiensi dan kemudahan penggunaan. Aplikasi ini memfasilitasi pencatatan meteran listrik, pengelolaan pelanggan, serta transaksi pembayaran dengan antarmuka yang modern dan responsif.
+
+---
+
+## 🌟 Fitur Utama
+
+Aplikasi ini memiliki dua hak akses pengguna dengan fitur yang berbeda:
+
+### 👮 Administrator (Petugas/Admin)
+* **Dashboard Interaktif**: Statistik real-time pelanggan aktif, total pendapatan, dan status tagihan dengan visualisasi grafik (Chart.js).
+* **Manajemen Data Master**: Pengelolaan data Tarif (Volt Ampere/Daya) dan Tarif per kWh.
+* **Kelola Pelanggan**: Tambah, edit, dan hapus data pelanggan lengkap dengan akun login otomatis.
+* **Pencatatan Meter**: Input meteran awal dan akhir untuk menghitung tagihan otomatis.
+* **Transaksi Pembayaran**: Memproses pembayaran tagihan pelanggan secara manual.
+* **Cetak Struk & Laporan**: Fitur cetak bukti pembayaran dan export laporan pendapatan bulanan ke PDF.
+* **Manajemen Akun**: Update profil dan keamanan password admin.
+
+### 👤 Pelanggan (User)
+* **Info Tagihan Real-time**: Melihat status tagihan bulan berjalan langsung di dashboard.
+* **Riwayat Transaksi**: Melihat history pembayaran bulan-bulan sebelumnya.
+* **Simulasi Pembayaran**: Melakukan pembayaran mandiri (Mock Payment Gateway).
+* **Cetak Struk**: Mengunduh bukti pembayaran resmi sendiri.
+
+---
+
+## 📸 Tampilan Aplikasi
+
+| Dashboard Admin | Riwayat Tagihan |
+| :---: | :---: |
+| ![Dashboard](https://via.placeholder.com/600x300.png?text=Dashboard+Admin+Listriku) | ![Tagihan](https://via.placeholder.com/600x300.png?text=Riwayat+Tagihan) |
+*(Ganti link placeholder di atas dengan screenshot asli aplikasi Anda)*
+
+---
+
+## 🛠️ Instalasi & Penggunaan
+
+Ikuti langkah berikut untuk menjalankan aplikasi di komputer lokal Anda:
+
+### Prasyarat
+* PHP >= 8.2
+* Composer
+* MySQL
+
+### Langkah-langkah
+1.  **Clone Repository**
+    ```bash
+    git clone [https://github.com/Fahvvi/tagihan-app.git](https://github.com/Fahvvi/tagihan-app.git)
+    cd tagihan-app
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    composer install
+    ```
+
+3.  **Konfigurasi Environment**
+    Duplikasi file `.env.example` menjadi `.env`, lalu atur koneksi database Anda.
+    ```bash
+    cp .env.example .env
+    ```
+    Buka file `.env` dan sesuaikan:
+    ```ini
+    DB_DATABASE=listriku_db
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+4.  **Generate Key & Migrasi Database**
+    ```bash
+    php artisan key:generate
+    php artisan migrate:fresh --seed
+    ```
+    *(Command `--seed` akan otomatis membuat Data Admin Default & Tarif Dasar)*
+
+5.  **Jalankan Server**
+    ```bash
+    php artisan serve
+    ```
+
+6.  **Akses Aplikasi**
+    Buka browser dan kunjungi `http://localhost:8000`
+
+---
+
+## 🔐 Akun Demo (Seeder)
+
+Gunakan akun berikut untuk masuk ke dalam sistem:
+
+| Role | Username | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin` | `password` |
+| **Pelanggan** | *(Buat manual via Admin)* | `password` |
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk tujuan edukasi dan Uji Kompetensi Keahlian (UKK/Serkom). Silakan dikembangkan lebih lanjut.
+
+---
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  Dibuat dengan ❤️ oleh <b>Fahvvi</b>
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# tagihan-app" 
