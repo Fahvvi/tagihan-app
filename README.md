@@ -34,8 +34,8 @@ Aplikasi ini memiliki dua hak akses pengguna dengan fitur yang berbeda:
 
 | Dashboard Admin | Riwayat Tagihan |
 | :---: | :---: |
-| ![Dashboard](https://via.placeholder.com/600x300.png?text=Dashboard+Admin+Listriku) | ![Tagihan](https://via.placeholder.com/600x300.png?text=Riwayat+Tagihan) |
-*(Ganti link placeholder di atas dengan screenshot asli aplikasi Anda)*
+| ![Dashboard] <img width="1911" height="912" alt="Screenshot 2026-02-02 094627" src="https://github.com/user-attachments/assets/f926de3c-ef54-4581-a47d-5b95bfa78707" />
+ | ![Tagihan] <img width="1919" height="911" alt="Screenshot 2026-02-02 094640" src="https://github.com/user-attachments/assets/131b7c29-c59c-48c3-9c14-8cbdbfa87dcd" /> |
 
 ---
 
